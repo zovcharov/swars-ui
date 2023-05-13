@@ -31,7 +31,14 @@ export default function Sidebar() {
   return (
     <VStack w={36} spacing={3} pt={5} px={2}>
       {LINKS.map(({ url, title, icon }) => (
-        <SidebarLink isActive={asPath === url} url={url} icon={icon}>{title}</SidebarLink>
+        <SidebarLink
+          key={url}
+          isActive={asPath.includes(url)}
+          url={url}
+          icon={icon}
+        >
+          {title}
+        </SidebarLink>
       ))}
     </VStack>
   )

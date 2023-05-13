@@ -11,7 +11,7 @@ export default function AppLayout(props: PropsWithChildren) {
       <Box as="aside">
         <Sidebar />
       </Box>
-      <Box bgColor="gray.50" as="main" flex="1" p={5}>
+      <Box bgColor="gray.50" as="main" flex="1" p={5} maxH="100vh" overflowY="auto">
         {children}
       </Box>
     </Flex>

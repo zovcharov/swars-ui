@@ -13,5 +13,8 @@ interface APIListResponse<T> {
   results: T[];
 }
 
-export const getPeople = async (): Promise<APIListResponse<Person>> =>
-  await ky.get(generateApiUrl('/people')).json();
+export const getPeople = async (searchString = ''): Promise<APIListResponse<Person>> =>
+  await ky.get(generateApiUrl(`/people?search=${searchString}`)).json();
+
+export const getPerson = async (id: string): Promise<Person> =>
+  await ky.get(generateApiUrl(`/people/${id}`)).json();
