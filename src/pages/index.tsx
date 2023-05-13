@@ -17,7 +17,9 @@ export default function Home() {
       </Head>
       <main>
         <Box p={10}>
-          <Heading color="purple.800" mb={14}>Select info you need</Heading>
+          <Heading color="purple.800" mb={14}>
+            Select info you need
+          </Heading>
           <Flex gap={6} justifyContent="space-around" flexWrap="wrap">
             <Card
               onClick={handlePeopleClick}
@@ -31,7 +33,7 @@ export default function Home() {
               bgColor="purple.50"
               _hover={{
                 cursor: 'pointer',
-                transform: 'scale(1.05)'
+                transform: 'scale(1.05)',
               }}
             >
               <Heading color="purple.600">People</Heading>
@@ -48,7 +50,7 @@ export default function Home() {
               bgColor="purple.50"
               _hover={{
                 cursor: 'pointer',
-                transform: 'scale(1.05)'
+                transform: 'scale(1.05)',
               }}
             >
               <Heading color="purple.600">Films</Heading>

@@ -1,4 +1,4 @@
-import { Film } from "@/shared/types/film.types";
+import { Film } from '@/shared/types/film.types';
 
 export const MOCK_FILM: Film = {
   characters: ['characters'],

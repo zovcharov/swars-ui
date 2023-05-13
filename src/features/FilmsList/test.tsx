@@ -4,18 +4,16 @@ import FilmsList from '.';
 import { MOCK_FILM } from './FilmsCard/mocks';
 
 const getApiResponseMock = () => ({
-  results: [
-    MOCK_FILM,
-  ],
+  results: [MOCK_FILM],
   count: 1,
   next: null,
   previous: null,
-})
+});
 
 jest.mock('./FilmsCard', () => () => <div data-testid="film-card" />);
 
 jest.mock('@/api', () => ({
-  getFilms: () => Promise.resolve(getApiResponseMock())
+  getFilms: () => Promise.resolve(getApiResponseMock()),
 }));
 
 describe('features/FilmsList', () => {
@@ -23,7 +21,7 @@ describe('features/FilmsList', () => {
     jest.clearAllMocks();
   });
 
-  it ('renders component with correct films count', async () => {
+  it('renders component with correct films count', async () => {
     await act(() => {
       render(<FilmsList />);
     });

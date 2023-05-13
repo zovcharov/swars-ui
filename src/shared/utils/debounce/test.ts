@@ -1,5 +1,5 @@
 import { waitFor } from '@testing-library/react';
-import debounce from "."
+import debounce from '.';
 
 describe('utils/debounce', () => {
   it('calls function only once', async () => {
@@ -28,5 +28,5 @@ describe('utils/debounce', () => {
     await waitFor(() => {
       expect(mockFn).toBeCalledWith(3);
     });
-  })
-})
+  });
+});

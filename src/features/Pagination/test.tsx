@@ -1,5 +1,5 @@
 import '@testing-library/jest-dom';
-import { render, act, waitFor, screen, fireEvent } from '@testing-library/react';
+import { render, waitFor, fireEvent } from '@testing-library/react';
 import Pagination from '.';
 
 describe('features/Pagination', () => {
@@ -7,8 +7,8 @@ describe('features/Pagination', () => {
     const { getByText } = render(
       <Pagination
         curPage={3}
-        onNext={() => {}}
-        onPrev={() => {}}
+        onNext={jest.fn()}
+        onPrev={jest.fn()}
         nextPageUrl={null}
         prevPageUrl={null}
       />
@@ -35,7 +35,7 @@ describe('features/Pagination', () => {
 
     fireEvent.click(buttons[0]);
     fireEvent.click(buttons[2]);
-    
+
     await waitFor(() => {
       expect(onPrev).toBeCalledTimes(1);
       expect(onNext).toBeCalledTimes(1);
@@ -54,7 +54,7 @@ describe('features/Pagination', () => {
     );
 
     const buttons = getAllByRole('button');
-    
+
     expect(buttons[0].getAttribute('disabled')).toBeDefined();
     expect(buttons[2].getAttribute('disabled')).toBeDefined();
   });
