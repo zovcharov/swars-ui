@@ -12,9 +12,9 @@ import {
 import { getPeople } from '@/api';
 import Icon from '@/shared/uikit/Icon';
 import debounce from '@/shared/utils/debounce';
+import usePagination from '@/shared/hooks/usePagination';
 
 import PersonCard from './PersonCard';
-import usePagination from '@/shared/hooks/usePagination';
 import Pagination from '../Pagination';
 
 export default function PeopleList() {

@@ -13,7 +13,7 @@ import { getFilms } from '@/api';
 import Icon from '@/shared/uikit/Icon';
 import debounce from '@/shared/utils/debounce';
 
-import FilmCard from './FilmCard';
+import FilmCard from './FilmsCard';
 
 export default function FilmsList() {
   const [search, setSearch] = useState('');

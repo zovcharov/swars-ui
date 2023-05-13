@@ -25,15 +25,15 @@ export default function FilmCard(props: Props) {
       <HStack spacing={4} alignItems="flex-start">
         <Text>
           Producer: <br />
-          <Text color="purple.700">{producer}</Text>
+          <Text as="span" color="purple.700">{producer}</Text>
         </Text>
         <Text>
           Director: <br />
-          <Text color="purple.700">{director}</Text>
+          <Text as="span" color="purple.700">{director}</Text>
         </Text>
         <Text>
           Release date: <br />
-          <Text color="purple.700">{release_date}</Text>
+          <Text as="span" color="purple.700">{release_date}</Text>
         </Text>
       </HStack>
     </Card>

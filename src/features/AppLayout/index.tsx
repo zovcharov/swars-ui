@@ -1,6 +1,7 @@
 import { NextPageWithLayout } from '@/shared/types/common.types';
 import { Box, Flex } from '@chakra-ui/react';
 import { PropsWithChildren, ReactElement } from 'react';
+
 import Sidebar from '../Sidebar';
 
 export default function AppLayout(props: PropsWithChildren) {
