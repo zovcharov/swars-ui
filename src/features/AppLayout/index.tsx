@@ -1,7 +1,7 @@
-import { NextPageWithLayout } from "@/types/common.types";
-import { Box, Flex } from "@chakra-ui/react";
-import { PropsWithChildren, ReactElement } from "react";
-import Sidebar from "../Sidebar";
+import { NextPageWithLayout } from '@/shared/types/common.types';
+import { Box, Flex } from '@chakra-ui/react';
+import { PropsWithChildren, ReactElement } from 'react';
+import Sidebar from '../Sidebar';
 
 export default function AppLayout(props: PropsWithChildren) {
   const { children } = props;
@@ -11,19 +11,22 @@ export default function AppLayout(props: PropsWithChildren) {
       <Box as="aside">
         <Sidebar />
       </Box>
-      <Box bgColor="gray.50" as="main" flex="1" p={5} maxH="100vh" overflowY="auto">
+      <Box
+        bgColor="gray.50"
+        as="main"
+        flex="1"
+        p={5}
+        maxH="100vh"
+        overflowY="auto"
+      >
         {children}
       </Box>
     </Flex>
-  )
+  );
 }
 
 export function getLayout(page: ReactElement) {
-  return (
-    <AppLayout>
-      {page}
-    </AppLayout>
-  )
+  return <AppLayout>{page}</AppLayout>;
 }
 
 export function withAppLayout(Component: NextPageWithLayout) {

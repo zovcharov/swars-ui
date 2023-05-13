@@ -1,14 +1,14 @@
-import { ChakraProvider } from '@chakra-ui/react'
+import { ChakraProvider } from '@chakra-ui/react';
 import { Roboto } from 'next/font/google';
-import type { AppProps } from 'next/app'
-import { SWRConfig } from 'swr'
+import type { AppProps } from 'next/app';
+import { SWRConfig } from 'swr';
 
-import '@/styles/globals.css'
-import { NextPageWithLayout } from '@/types/common.types';
+import '@/styles/globals.css';
+import { NextPageWithLayout } from '@/shared/types/common.types';
 
 const roboto = Roboto({
   weight: ['100', '300', '400', '500', '700', '900'],
-  subsets: ['cyrillic-ext']
+  subsets: ['cyrillic-ext'],
 });
 
 type AppPropsWithLayout = AppProps & {
@@ -16,7 +16,7 @@ type AppPropsWithLayout = AppProps & {
 };
 
 export default function App({ Component, pageProps }: AppPropsWithLayout) {
-  const getLayout = Component.getLayout ?? ((page) => page)
+  const getLayout = Component.getLayout ?? ((page) => page);
 
   return (
     <>
@@ -27,7 +27,7 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
           }
         `}
       </style>
-      
+
       <SWRConfig
         value={{
           refreshInterval: 0,
@@ -39,5 +39,5 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
         </ChakraProvider>
       </SWRConfig>
     </>
-  )
+  );
 }

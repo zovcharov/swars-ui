@@ -1,7 +1,7 @@
-import { IconsList } from "@/uikit/Icon";
-import { VStack } from "@chakra-ui/react";
-import SidebarLink from "./SidebarLink";
-import { useRouter } from "next/router";
+import { IconsList } from '@/shared/uikit/Icon';
+import { VStack } from '@chakra-ui/react';
+import SidebarLink from './SidebarLink';
+import { useRouter } from 'next/router';
 
 const LINKS: {
   title: string;
@@ -11,19 +11,14 @@ const LINKS: {
   {
     title: 'People',
     url: '/people',
-    icon: 'People'
+    icon: 'People',
   },
   {
     title: 'Films',
     url: '/films',
     icon: 'Camera',
   },
-  {
-    title: 'Starships',
-    url: '/starships',
-    icon: 'Airplane',
-  }
-]
+];
 
 export default function Sidebar() {
   const { asPath } = useRouter();
@@ -41,5 +36,5 @@ export default function Sidebar() {
         </SidebarLink>
       ))}
     </VStack>
-  )
+  );
 }

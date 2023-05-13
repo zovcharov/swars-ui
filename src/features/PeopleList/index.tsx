@@ -1,37 +1,50 @@
 'use client';
 
-import { getPeople } from '@/api';
-import { Flex, Input, InputGroup, InputLeftAddon, Skeleton } from '@chakra-ui/react';
-import useSWR from 'swr';
-import PersonCard from './PersonCard';
 import { ChangeEvent, useCallback, useMemo, useState } from 'react';
-import Icon from '@/uikit/Icon';
-import debounce from '@/utils/debounce';
+import useSWR from 'swr';
+import {
+  Flex,
+  Input,
+  InputGroup,
+  InputLeftAddon,
+  Skeleton,
+} from '@chakra-ui/react';
+import { getPeople } from '@/api';
+import Icon from '@/shared/uikit/Icon';
+import debounce from '@/shared/utils/debounce';
+
+import PersonCard from './PersonCard';
+import usePagination from '@/shared/hooks/usePagination';
+import Pagination from '../Pagination';
 
 export default function PeopleList() {
   const [search, setSearch] = useState('');
+  const { page, onPrevPage, onNextPage } = usePagination();
   const { data, isLoading } = useSWR(
-    `/api/people/search=${search}`,
-    () => getPeople(search)
+    `/api/people/search=${search}&page=${page}`,
+    () => getPeople(search, page)
   );
 
   const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
-  }
+  };
 
   const debouncedSearchChange = useCallback(
     debounce(handleSearchChange, 500),
     []
-  )
+  );
 
-  const skeleton = useMemo(() => (
-    <Flex gap={4} flexWrap="wrap">
-      <Skeleton height="300px" w="200px" borderRadius="lg" />
-      <Skeleton height="300px" w="200px" borderRadius="lg" />
-      <Skeleton height="300px" w="200px" borderRadius="lg" />
-      <Skeleton height="300px" w="200px" borderRadius="lg" />
-    </Flex>
-  ), []);
+  const skeleton = useMemo(
+    () => (
+      <Flex gap={4} flexWrap="wrap">
+        <Skeleton height="200px" w="200px" borderRadius="lg" />
+        <Skeleton height="200px" w="200px" borderRadius="lg" />
+        <Skeleton height="200px" w="200px" borderRadius="lg" />
+        <Skeleton height="200px" w="200px" borderRadius="lg" />
+      </Flex>
+    ),
+    []
+  );
 
   const getContent = () => {
     if (isLoading) {
@@ -39,12 +52,12 @@ export default function PeopleList() {
     }
 
     return (
-      <Flex gap={4} flexWrap="wrap">
+      <Flex gap={4} flexWrap="wrap" justifyContent="space-around">
         {data?.results.map((person) => (
           <PersonCard key={person.name} person={person} />
         ))}
       </Flex>
-    )
+    );
   };
 
   return (
@@ -56,6 +69,13 @@ export default function PeopleList() {
         <Input onChange={debouncedSearchChange} />
       </InputGroup>
       {getContent()}
+      <Pagination
+        curPage={page}
+        prevPageUrl={data?.previous}
+        nextPageUrl={data?.next}
+        onNext={onNextPage}
+        onPrev={onPrevPage}
+      />
     </>
-  )
+  );
 }
